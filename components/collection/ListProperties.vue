@@ -46,6 +46,7 @@
                 </th>
               </tr>
             </thead>
+
             <tbody class="divide-y divide-gray-200">
               <tr v-for="unit in units" :key="unit.name">
                 <td
@@ -60,7 +61,16 @@
                   {{ unit.units }}
                 </td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                  {{ unit.total_floors }}
+                </td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                   {{ unit.approve_status }}
+                </td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                  {{ unit.description }}
+                </td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                  {{ unit.description }}
                 </td>
                 <collectionEditProperties
                   @delete-property="emits('delete-property', unit)"

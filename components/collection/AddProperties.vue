@@ -1,14 +1,5 @@
 <template>
   <div>
-    <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-      <button
-        @click="open = true"
-        type="button"
-        class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-      >
-        Add Property
-      </button>
-    </div>
     <TransitionRoot as="template" :show="open">
       <Dialog as="div" class="relative z-10" @close="open = false">
         <div class="fixed inset-0" />
@@ -77,7 +68,7 @@
                           </div>
                           <div class="sm:col-span-2">
                             <input
-                              v-model="name"
+                              v-model="propertyData.name"
                               type="text"
                               name="project-name"
                               id="project-name"
@@ -94,7 +85,7 @@
                           </div>
                           <div class="sm:col-span-2">
                             <input
-                              v-model="property_build_area"
+                              v-model="propertyData.property_build_area"
                               type="number"
                               name="project-name"
                               id="project-name"
@@ -111,7 +102,7 @@
                           </div>
                           <div class="sm:col-span-2">
                             <input
-                              v-model="blocks"
+                              v-model="propertyData.blocks"
                               type="number"
                               name="project-name"
                               id="project-name"
@@ -128,7 +119,7 @@
                           </div>
                           <div class="sm:col-span-2">
                             <input
-                              v-model="units"
+                              v-model="propertyData.units"
                               type="number"
                               name="project-name"
                               id="project-name"
@@ -145,7 +136,7 @@
                           </div>
                           <div class="sm:col-span-2">
                             <input
-                              v-model="total_floors"
+                              v-model="propertyData.total_floors"
                               type="number"
                               name="project-name"
                               id="project-name"
@@ -162,7 +153,7 @@
                           </div>
                           <div class="sm:col-span-2">
                             <input
-                              v-model="approve_status"
+                              v-model="propertyData.approve_status"
                               type="text"
                               name="project-name"
                               id="project-name"
@@ -179,7 +170,7 @@
                           </div>
                           <div class="sm:col-span-2">
                             <input
-                              v-model="address"
+                              v-model="propertyData.address"
                               type="text"
                               name="project-name"
                               id="project-name"
@@ -196,7 +187,24 @@
                           </div>
                           <div class="sm:col-span-2">
                             <input
-                              v-model="description"
+                              v-model="propertyData.description"
+                              type="text"
+                              name="project-name"
+                              id="project-name"
+                              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            />
+                          </div>
+                          <div>
+                            <label
+                              for="project-name"
+                              class="block text-sm font-medium leading-6 text-gray-900 sm:mt-1.5"
+                            >
+                              Project Id
+                            </label>
+                          </div>
+                          <div class="sm:col-span-2">
+                            <input
+                              v-model="propertyData.project_id"
                               type="text"
                               name="project-name"
                               id="project-name"
@@ -246,33 +254,25 @@ import {
   TransitionRoot,
 } from '@headlessui/vue'
 import { XMarkIcon } from '@heroicons/vue/24/outline'
-const open = ref(false)
+const open = ref(true)
 const emit = defineEmits(['submit-Property-data'])
 const props = defineProps({
   // Declare props here
-  PropertyData: Object,
+  propertyData: Object,
 })
-const name = ref('')
-const property_build_area = ref('')
-const blocks = ref('')
-const units = ref('')
-const total_floors = ref('')
-const approve_status = ref('')
-const description = ref('')
-const address = ref('')
 const project_id = ref('')
 
 // Save Property
 const saveData = async () => {
   let formData = {
-    name: name.value,
-    property_build_area: property_build_area.value,
+    name: propertyData.name.value,
+    property_build_area: propertyData.property_build_area.value,
     blocks: '0',
-    units: units.value,
+    units: propertyData.units.value,
     total_floors: '0',
     approve_status: 'Active',
-    description: description.value,
-    address: address.value,
+    description: propertyData.description.value,
+    address: propertyData.address.value,
     avg_price: 0,
     flats_in_floor: 0,
     prefs: {
@@ -284,7 +284,7 @@ const saveData = async () => {
       allowed_visitors: true,
       allowed_drinking: true,
     },
-    project_id: project_id.value,
+    project_id: propertyData.project_id,
     visit_count: 0,
   }
   // To assign uid to edit form

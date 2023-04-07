@@ -100,5 +100,4 @@ import { CheckIcon } from '@heroicons/vue/24/outline'
 const open = ref(false)
 import { defineEmits } from 'vue'
 const emits = defineEmits(['edit-property', 'delete-property'])
-console.log('editttttttttttttttttttt')
 </script>
