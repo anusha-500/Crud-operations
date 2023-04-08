@@ -40,11 +40,10 @@ const candidateData = ref({
   instructions: {},
   status: '',
 })
-//const propertyIndex = ref[0]
-
 const { data: candidates } = await useAuthLazyFetch(
   'https://v7-stark-db-orm.mercury.infinity-api.net/api/mock-interviews/',
 )
+
 const getCandidateData = async (data: Object) => {
   // Set options for candidate data
   let options = {
